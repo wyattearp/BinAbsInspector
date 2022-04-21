@@ -23,19 +23,25 @@ We use Gradle to manage dependencies and test tasks. You can use IntelliJ IDEA o
 ### For Eclipse
 reference: https://github.com/googleinterns/ghidra-nsis-extension
 + Install Ghidra Eclipse extension, following instructions: https://ghidra-sre.org/InstallationGuide.html#Extensions
++ Get a working copy of gradle 7.4.1+
 + git clone the repo
-+ In Eclipse's File menu, select `New->Java Project`
-+ Deselect `Use default location` and navigate to the project folder
-+ Press `Next`
-+ Deselect `Create module-info.jva file`
++ In Eclipse's File meun, select `Import...`
++ Select `Project from Folder or Archive`
++ Browse to the directory
 + Press `Finish`
-    + There will be build error
-+ In the `GhidraDev` menu of Eclipse, use the `Link Ghidra...` and enter the path to the Ghidra binary install location.
-    + Select the Java project just created
-    + If there is java conflict probably best to keep the current Java by pressing `Cancel`
-    + Build errors should be resoved
-+ Add the jar file under `./lib` to the build path in Eclipse to import those dependencies.
-+ You can test that everything is working in your project by selecting the "Run" menu, then "Run As " and "Ghidra".
+    + There will be numerous build errors
++ Right click the project, select the the `GhidraDev` menu of Eclipse, use the `Link Ghidra...` and enter the path to the Ghidra binary install location.
+    + There will be numerous build errors
++ Right click the project and choose `Properties`
++ Click `Gradle` and `Override workspace settings`
+    + Provide a `Local installation director` for Gradle
+    + Click `Add` for `Program Args`
+    + Replace the `arg` with `-PGHIDRA_INSTALL_DIR=path/to/ghidra/install/directory`
+    + Click `Add` for `Program Args`
+    + Replace the `arg` with `--info`
+    + Click `Apply` then click `Apply and Close` (**NOTE:** there appears to be a defect that doesn't save the arguments if you don't `Apply` first)
++ Right click the project and choose `Gradle` then `Refresh Gradle Project`
+    + There should be no errors left
 
 ## Checker Development
 You can write your own checkers for other kinds of vulnerabilities. This page will show you how to do this via an example.
