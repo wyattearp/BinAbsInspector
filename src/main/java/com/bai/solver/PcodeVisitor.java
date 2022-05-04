@@ -682,7 +682,10 @@ public class PcodeVisitor {
         if (callee.isExternal() || FunctionModelManager.isFunctionAddressMapped(targetAddress)) {
             defineExternalFunctionSignature(pcode, inOutEnv, tmpEnv, callee);
             MemoryCorruption.checkExternalCallParameters(pcode, inOutEnv, tmpEnv, context, callee);
-            invokeExternal(pcode, inOutEnv, tmpEnv, callee);
+            Status status = invokeExternal(pcode, inOutEnv, tmpEnv, callee);
+            if (status.noReturn) {
+                jumpOut = true;
+            }
             return;
         }
 
@@ -690,7 +693,10 @@ public class PcodeVisitor {
             Logging.debug("Calling C++ STL: " + callee.getName(true));
             defineStdFunctionSignature(pcode, inOutEnv, tmpEnv, callee);
             MemoryCorruption.checkExternalCallParameters(pcode, inOutEnv, tmpEnv, context, callee);
-            invokeStd(pcode, inOutEnv, tmpEnv, callee);
+            Status status = invokeStd(pcode, inOutEnv, tmpEnv, callee);
+            if (status.noReturn) {
+                jumpOut = true;
+            }
             return;
         }
 
