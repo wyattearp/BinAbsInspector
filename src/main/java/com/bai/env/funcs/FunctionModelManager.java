@@ -13,10 +13,12 @@ import com.bai.env.funcs.externalfuncs.GetenvFunction;
 import com.bai.env.funcs.externalfuncs.GetsFunction;
 import com.bai.env.funcs.externalfuncs.LibcStartMainFunction;
 import com.bai.env.funcs.externalfuncs.MallocFunction;
+import com.bai.env.funcs.externalfuncs.MallocUsableSizeFunction;
 import com.bai.env.funcs.externalfuncs.MemcpyFunction;
 import com.bai.env.funcs.externalfuncs.PrintfFunction;
 import com.bai.env.funcs.externalfuncs.PutsFunction;
 import com.bai.env.funcs.externalfuncs.RandFunction;
+import com.bai.env.funcs.externalfuncs.ReadFunction;
 import com.bai.env.funcs.externalfuncs.ReallocFunction;
 import com.bai.env.funcs.externalfuncs.RecvFunction;
 import com.bai.env.funcs.externalfuncs.ScanfFunction;
@@ -55,6 +57,7 @@ public class FunctionModelManager {
             new CallocFunction(),
             new ReallocFunction(),
             new FreeFunction(),
+            new MallocUsableSizeFunction(),
             // String function
             new StrcatFunction(),
             new StrlenFunction(),
@@ -65,6 +68,7 @@ public class FunctionModelManager {
             new FgetcFunction(),
             new GetsFunction(),
             new FgetsFunction(),
+            new ReadFunction(),
             new RecvFunction(),
             new GetenvFunction(),
             new RandFunction(),
